@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>refillmap — a heatwave survival map</title>
+    <meta
+      name="description"
+      content="Find the nearest drinking fountain, a shaded seat and a cool public space, with the shadiest walking route."
+    />
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <header class="top">
+      <div class="brand">
+        <h1>refillmap</h1>
+        <p class="pitch">
+          The nearest drinking water, a seat in shade and the coolest walk to both.
+        </p>
+      </div>
+      <div class="sun-badge" id="sunBadge" hidden>
+        <span class="sun-dot"></span>
+        <span id="sunText">—</span>
+      </div>
+    </header>
+
+    <main>
+      <section class="controls" aria-label="Plan controls">
+        <label class="field">
+          <span>Area</span>
+          <select id="areaSelect"></select>
+        </label>
+
+        <label class="field">
+          <span>Day and hour</span>
+          <input id="timeInput" type="datetime-local" />
+        </label>
+
+        <label class="field slider-field">
+          <span>Shade over speed <output id="shadeOut">1.5</output></span>
+          <input id="shadeInput" type="range" min="0" max="4" step="0.5" value="1.5" />
+        </label>
+
+        <div class="buttons">
+          <button id="hereBtn" class="ghost" type="button">Use my location</button>
+          <button id="planBtn" class="primary" type="button">Update plan</button>
+        </div>
+      </section>
+
+      <p id="status" class="status" role="status">Loading the area…</p>
+
+      <div class="layout">
+        <div class="map-wrap">
+          <canvas id="map" aria-label="Map of water, shade and cool places"></canvas>
+          <div class="legend" id="legend">
+            <span><i class="sw water"></i> Water</span>
+            <span><i class="sw seat"></i> Shade seat</span>
+            <span><i class="sw cool"></i> Cool space</span>
+            <span><i class="sw shadow"></i> Shade now</span>
+          </div>
+          <div class="map-note" id="mapNote"></div>
+        </div>
+
+        <aside class="panel" aria-label="Plan results">
+          <article class="card" data-kind="water">
+            <header><span class="tag">Water</span><h2 id="waterName">—</h2></header>
+            <p class="meta" id="waterMeta"></p>
+            <p class="why" id="waterWhy"></p>
+            <button class="linkish" data-route="water" type="button">Show this route</button>
+          </article>
+
+          <article class="card" data-kind="seat">
+            <header><span class="tag">Shaded seat</span><h2 id="seatName">—</h2></header>
+            <p class="meta" id="seatMeta"></p>
+            <p class="why" id="seatWhy"></p>
+            <button class="linkish" data-route="seat" type="button">Show this route</button>
+          </article>
+
+          <article class="card" data-kind="cool">
+            <header><span class="tag">Cool space</span><h2 id="coolName">—</h2></header>
+            <p class="meta" id="coolMeta"></p>
+            <p class="why" id="coolWhy"></p>
+            <button class="linkish" data-route="cool" type="button">Show this route</button>
+          </article>
+        </aside>
+      </div>
+
+      <section class="comfort" aria-label="Hourly comfort">
+        <div class="comfort-head">
+          <h2>Comfort today</h2>
+          <p id="comfortSource" class="muted"></p>
+        </div>
+        <div class="strip" id="comfortStrip"></div>
+        <p class="muted" id="bestWindows"></p>
+      </section>
+
+      <section class="notes">
+        <h2>How this works</h2>
+        <ul id="notesList"></ul>
+      </section>
+    </main>
+
+    <footer>
+      <p>
+        Data: OpenStreetMap contributors (ODbL) and Open-Meteo. Sun position from the NOAA
+        equations. Shade is an estimate, not a survey.
+      </p>
+    </footer>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>

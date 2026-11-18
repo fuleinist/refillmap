@@ -1,0 +1,16 @@
+{
+  "areas": [
+    {
+      "id": "newtown",
+      "name": "Newtown, Sydney",
+      "file": "snapshot-newtown.json",
+      "note": "Dense inner-west village. Fountains, small parks and street trees."
+    },
+    {
+      "id": "parramatta",
+      "name": "Parramatta CBD",
+      "file": "snapshot-parramatta.json",
+      "note": "Hot western Sydney CBD. River parks and wide open plazas."
+    }
+  ]
+}
